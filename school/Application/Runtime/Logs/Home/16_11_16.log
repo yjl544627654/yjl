@@ -1,0 +1,26 @@
+[ 2016-11-16T15:01:26+08:00 ] 127.0.0.1 /index.php?s=/Home/school/school_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000065s ]
+INFO: [ app_init ] --END-- [ RunTime:0.006280s ]
+NOTIC: [8] Use of undefined constant ture - assumed 'ture' D:\wamp\www\school\Application\Home\Conf\config.php 第 30 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005895s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006211s ]
+SQL: SHOW COLUMNS FROM `tp_school` [ RunTime:0.0140s ]
+SQL: SELECT * FROM `tp_school`  [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: lock D:\wamp\www\school\Application\Component\AdminController.class.php 第 22 行.
+SQL: SELECT * FROM `tp_school`  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000381s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000644s ]
+NOTIC: [8] Undefined index: sid D:\wamp\www\school\Application\Runtime\Cache\Home\2d8c39325cea8153d49f1b53b7387ae5.php 第 424 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.068123s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.068422s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.003857s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004114s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003570s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003895s ]
+
