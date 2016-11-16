@@ -1,0 +1,200 @@
+<extend name="Common:base_no_left" />
+<block name="rig">
+<style>
+		/*设备管理*/
+	body{
+		background: transparent url("http://wx.guaziwangluo.com/school/Public/Admin/img/avatars/gw-bg.jpg") no-repeat fixed 0% 0%;
+	}
+	.shizhi_box{
+		border-radius:5px;
+		padding:20px;
+		background:#f5f5f5;
+		margin:0px;
+	}
+	.shizhi_wai{
+		margin-bottom:70px;
+
+	}
+	.shizhi_wai .btn{
+		color:#333 !important;
+		background:#eee !important;
+	}
+	.shizhi_wai .btn:hover{
+		background:#7dacdd !important;
+		color:#fff !important;
+	}
+	.shizhi_wai blockquote{
+		border-left:3px solid #000;
+	}
+	.shizhi_wai blockquote p{
+		font-size:14px;
+	}
+	.shizhi_logo{
+		margin-bottom:20px;
+	}
+	.btn.btn-app > [class*="icon"]{
+		font-size:30px;
+		margin-bottom:-5px;
+	}
+	.btn.btn-app{
+		font-size:14px;
+		padding:5px;
+	}
+
+
+	/*账号信息*/
+	.shezhi_nav{
+		border-bottom:1px solid #428bca;
+		margin-bottom:20px;
+	}
+	.shezhi_nav{
+		margin:0px;
+		margin-bottom:20px;
+	}
+	.shizhi_wai .btn-tijiao{
+		background:#428bca !important;
+		border-color:#428bca;
+		color:#fff !important;
+	}
+	.shizhi_wai .btn-back{
+		background:#428bca !important;
+		border-color:#428bca;
+		color:#fff !important;
+	}
+	.shizhi_wai .btn-tijiao:hover,.shizhi_wai .btn-back:hover{
+		background:#3071a9 !important;
+		border-color:#3071a9;
+	}
+	.shizhi_wai .btn-danger{
+		background:#d9534f !important;
+		color:#fff !important;;
+	}
+	.shizhi_wai .btn-danger:hover{
+		background:#d43f3a !important;;
+	}
+	/*用户列表*/
+	.user_list_table .navbar-inner tr{
+		background:#fff;
+		color:#333;
+		font-size:14px;
+	}
+</style>
+<a href="./?refresh"><img src="/school/Public/Admin/img/avatars/gw-logo.png" class="shizhi_logo"></a>	
+		<div class="">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-list"></i>
+								设置管理
+							</li>
+							<li class="active">数据导入</li>
+						</ul><!-- .breadcrumb -->	
+					</div>
+
+
+
+					<!-- 表单 -->
+					<div class="row widget-main well shizhi_box shizhi_wai">
+							<ul class="nav nav-pills shezhi_nav">
+								<li  >
+									<a href="{:U('database_copy')}">数据备份</a>
+								</li>
+								<li class="active" >
+									<a href="{:U('database_upload')}">数据导入</a>
+								</li>
+								
+							</ul>						
+							<div class="panel panel-info">
+								<div class="panel-heading">导入数据</div>
+								<div class="space"></div>
+
+								<form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" >
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 
+										选择文件</label>
+										<div class="col-sm-5">
+												
+												<input type="file" class="btn btn-white" name="myfile">
+										</div>
+										<div class="col-sm-2">
+											<button class="btn btn-tijiao" style="border:none;">开始导入</button>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="rule panel panel-default">
+							<table id="sample-table-1" class="table table-hover user_list_table">
+								<thead class="navbar-inner">
+									<tr>
+										<th class="center">
+											<label>
+												<input type="checkbox" class="ace" id="select" >
+												<span class="lbl"></span>
+											</label>
+										</th>
+										<th>文件名</th>
+										<th>文件大小</th>
+										<th>备份时间</th>
+										<th>操作</th>
+										
+									</tr>
+								</thead>
+
+								<tbody>
+								<volist name='list' id='list'>
+									<tr class="">
+										<td class="center">
+											<label>
+												<input type="checkbox" class="ace table" name="table[]" value="{$list.name}">
+												<span class="lbl"></span>
+											</label>
+										</td>
+										<td>{$list.name}</td>
+										<td>{$list.size}</td>
+										<td>{$list.time|date="Y-m-d H:i:m",###}</td>
+										<td>
+											<a href="{:U('recovery',array('file'=>$list['name']))}" id="id-btn-dialog2" class="btn btn-tijiao" style="border:none;">恢复</a>
+											<a href="{:U('download',array('file'=>$list['name']))}" id="id-btn-dialog2" class="btn btn-tijiao" style="border:none;">下载</a>
+											<a href="{:U('del',array('file'=>$list['name']))}" id="id-btn-dialog2" class="btn btn-danger" style="border:none;" onclick=" return confirm('确定删除?')">删除</a>
+
+										</td>
+									</tr>
+								</volist>
+								</tbody>
+							</table>
+							</div>
+					</div>
+					<!-- 表单end -->								
+		</div>
+
+
+<script type="text/javascript">
+
+	$('#id-input-file-1 , #id-input-file-2').ace_file_input({
+		no_file:'No File ...',
+		btn_choose:'Choose',
+		btn_change:'Change',
+		droppable:false,
+		onchange:null,
+		thumbnail:false, //| true | large
+		whitelist:'sql'
+		//blacklist:'exe|php'
+		//onchange:''
+		//
+	});
+
+	/*$('.remove').click(function (){
+		$('.file-label').attr('class','file-label');
+		$('.file-name').attr('data-title','No File ...');
+		var file = $('#id-input-file-2');
+		file.after(file.clone().val(""));      
+		//file.remove();  
+	})*/
+
+</script>
+</block>

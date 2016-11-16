@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>校园饮水项目管理云平台</title>
+        <meta name="keywords" content="校园饮水项目管理云平台" />
+        <meta name="description" content="校园饮水项目管理云平台" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- basic styles -->
+        <link href="__CSS__bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="__CSS__font-awesome.min.css" />
+
+        <!--[if IE 7]>
+          <link rel="stylesheet" href="__CSS__font-awesome-ie7.min.css" />
+        <![endif]-->
+
+        <!-- page specific plugin styles -->
+
+        <!-- ace styles -->
+        <link rel="stylesheet" href="__CSS__jquery-ui-1.10.3.custom.min.css" />
+        <link rel="stylesheet" href="__CSS__chosen.css" />
+        <link rel="stylesheet" href="__CSS__datepicker.css" />
+        <link rel="stylesheet" href="__CSS__daterangepicker.css" />
+        <link rel="stylesheet" href="__CSS__colorpicker.css" />
+
+        <link rel="stylesheet" href="__CSS__bootstrap-timepicker.css" />
+        <link rel="stylesheet" href="__CSS__ace.min.css" />
+        <link rel="stylesheet" href="__CSS__ace-rtl.min.css" />
+        <link rel="stylesheet" href="__CSS__ace-skins.min.css" />
+
+        <!--[if lte IE 8]>
+          <link rel="stylesheet" href="__CSS__ace-ie.min.css" />
+        <![endif]-->
+
+        <!-- inline styles related to this page -->
+
+        <!-- ace settings handler -->
+
+        <script src="__JS__ace-extra.min.js"></script>
+        <script src="__JS__jquery.min.js"></script>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+        <!--[if lt IE 9]>
+        <script src="__JS__html5shiv.js"></script>
+        <script src="__JS__respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+
+	<body>
+
+		<!-- 头部 -->
+		<block name="top">
+			<div class="navbar navbar-default" id="navbar">
+				<script type="text/javascript">
+					try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+				</script>
+				<div class="navbar-container" id="navbar-container">
+					<div class="navbar-header pull-left">
+						<a href="{:U('index/index')}" class="navbar-brand">
+							<small>
+								<i class="icon-leaf"></i>
+								校园饮水项目管理云平台
+							</small>
+						</a><!-- /.brand -->
+					</div><!-- /.navbar-header -->
+
+					<div class="navbar-header pull-right" role="navigation">
+						<ul class="nav ace-nav">
+							<li>
+								<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+									<!-- <img class="nav-user-photo" src="__IMG__avatars/avatar2.png" /> -->
+									<span class="icon-user" ></span>
+									<span class="user-info">
+										{$Think.session.username}
+									</span>
+
+									<i class="icon-caret-down"></i>
+								</a>
+								<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+									<li>
+										<a href="{:U('Setting/index')}" target="_blank">
+											<i class="icon-cog"></i>
+											设置
+										</a>
+									</li>
+									<li>
+										<a href="{:U('Setting/account')}" target="_blank">
+											<i class="icon-user"></i>
+											个人资料
+										</a>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<a href="{:U('login/login_out')}">
+											<i class="icon-off"></i>
+											退出
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul><!-- /.ace-nav -->
+					</div><!-- /.navbar-header -->
+					<div class="navbar-header pull-right guanli" style="display:none;">
+						<a href="{:U('setting/index')}" target="_blank">
+							<!-- <i class="icon-list"></i> -->
+							<span class="menu-text"> 设置管理 </span>
+						</a>				
+					</div>>					
+				</div><!-- /.container -->
+			</div>
+		</block>
+		<!-- 头部结束 -->
+
+<style>
+	.container-fluid{margin-top: 29px;}
+
+</style>
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="container-fluid">
+			<!-- 	<a class="menu-toggler" id="menu-toggler11" href="#">    自设应不出现
+					<span class="menu-text"></span>
+				</a> -->
+
+				<!-- 左边栏开始 -->
+				<div class="col-xs-12 col-sm-3 col-lg-2 big-menur" id="sidebar">
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+					</script>
+
+					<ul class="nav nav-list" style="margin-bottom:10px;">
+						<li id="con_index">
+							<a href="{:U('index/index')}" >
+								<!-- <i class="icon-dashboard"></i> -->
+								<span class="menu-text"> 控制台 </span>
+							</a>
+						</li>
+						<!-- 学校数据信息统计 菜单 census -->
+						<li class="census" >
+							<a href="" class="dropdown-toggle" >
+								<!-- <i class="icon-desktop"></i> -->
+								<span class="menu-text">学校数据信息统计 </span>
+								<b class="arrow"><img class="jiantou" src="__IMG__avatars/xiala.png"></b>
+
+								<!-- <span class="glyphicon glyphicon-ok-sign"></span> -->
+							</a>
+							<ul class="submenu school_count">
+								<li class="index">
+									<a href="{:U('census/index')}">
+										<!-- <i class="icon-double-angle-right"></i> -->
+										学校信息汇总
+									</a>
+								</li>
+								<volist name='SchoolList' id='schoollist'>
+								<li class="count_{$schoollist.id}">
+									<a href="{:U('census/cate',array('sid'=>$schoollist['id']))}">
+										{$schoollist.name}
+									</a>
+								</li>
+								</volist>
+							</ul>
+						</li>
+
+						<!-- 校园服务器配置 菜单 school_set -->
+						<li class="census_school" >
+							<a href="" class="dropdown-toggle" >
+								<span class="menu-text">校园服务器配置 </span>
+								<b class="arrow"><img class="jiantou" src="__IMG__avatars/xiala.png"></b>
+							</a>
+							<ul class="submenu school_set" >
+								
+								<li class="school">
+									<a href="{:U('school/school_list')}">
+										学校列表
+									</a>
+								</li>										
+							</ul>
+						</li>
+						</ul>
+						</li>
+					</ul><!-- /.nav-list -->
+
+<!-- 					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+ -->
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+					</script>
+				</div>
+				<!-- 左边栏结束 -->
+
+				<!-- 内容开始 -->
+				<block name="rig"></block>
+				<!-- 内容结束 -->
+				
+
+			</div><!-- /.main-container-inner -->
+
+			
+		</div><!-- /.main-container -->
+
+
+
+
+<div class="modal fade in" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none; padding-right: 17px; background-color: rgba(50,50,50,.5);  ">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">已到锁屏时间，请输入账户密码继续操作</h4>
+          </div>
+          <div class="modal-body">
+              <!-- <div class="form-group">
+                <label for="recipient-name" class="control-label">账号:</label>
+                <input type="text" class="form-control" id="recipient-name" name="username">
+              </div> -->
+              <div class="form-group">
+                <label for="message-text" class="control-label">密码:</label>
+                <input type="password" class="form-control" id="lockpwd" name="pwd">
+                <span style="color:red" id="msg"></span>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" style="float:left;" class="btn btn-default" data-dismiss="modal" onclick="window.location.href='{:U('login/login_out')}';">退出登录</button> 
+            <button type="button" class="btn btn-primary" id="locklogin" >解锁</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="http://ajax.useso.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
+
+		<!--[if !IE]> -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='__JS__jquery-2.0.3.min.js'>"+"<"+"script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='__JS__jquery-1.10.2.min.js'>"+"<"+"script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='__JS__jquery.mobile.custom.min.js'>"+"<"+"script>");
+		</script>
+		<script src="__JS__bootstrap.min.js"></script>
+		<script src="__JS__typeahead-bs2.min.js"></script>
+		<script src="__JS__jquery.dataTables.min.js"></script>
+		<script src="__JS__jquery.dataTables.bootstrap.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="__JS__excanvas.min.js"></script>
+		<![endif]-->
+		<script src="__JS__jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="__JS__jquery.ui.touch-punch.min.js"></script>
+		<script src="__JS__jquery.slimscroll.min.js"></script>
+		<script src="__JS__jquery.easy-pie-chart.min.js"></script>
+		<script src="__JS__jquery.sparkline.min.js"></script>
+		<script src="__JS__flot/jquery.flot.min.js"></script>
+		<script src="__JS__flot/jquery.flot.pie.min.js"></script>
+		<script src="__JS__flot/jquery.flot.resize.min.js"></script>
+		<script src="__JS__date-time/bootstrap-datepicker.min.js"></script>
+		<script src="__JS__date-time/bootstrap-timepicker.min.js"></script>
+		<script src="__JS__date-time/moment.min.js"></script>
+		<script src="__JS__date-time/daterangepicker.min.js"></script>
+		<!-- ace scripts -->
+		<script src="__JS__ace-elements.min.js"></script>
+		<script src="__JS__ace.min.js"></script>
+		<script type="text/javascript">
+		//监听锁屏时间
+
+			var lock = "{$Think.session.lock}"; //过期时间
+			var time = "{:time()}"; //当前时间
+			var set_lock = '{$Think.session.setlock}';  //保存时间*小时
+			var locktime = 1000*3600*set_lock ; 
+
+			if(set_lock>0){  // 设置为0时候不设锁屏
+				if( time > lock  && lock !='' && time != '' ){
+				locking();  //刷新页面后检测时间弹出锁屏
+				}else{
+					setTimeout('locking()',locktime) ; // 到检测时间弹出锁屏
+				}
+			}
+			//var locktime = 5000;
+			function locking(){
+				$('#exampleModal').show();
+			}
+		</script>
+
+		<script type="text/javascript">
+			//锁屏框的验证和提交
+		 	$('#locklogin').click(function (){
+		 		if($('#lockpwd').val() == ''){
+		 			$("#msg").html('请输入密码');
+		 			$('#lockpwd').focus();
+		 		}else{
+		 			var url = "{:U('setting/ajax_locklogin')}";
+		 			var pwd = $('#lockpwd').val();
+		 			$.post(url,{pwd:pwd},function(data){
+		 				if(data){
+		 					$('#exampleModal').hide();
+		 				}else{
+		 					$("#msg").html('密码不正确');
+		 					$('#lockpwd').focus();
+		 				}
+		 			});
+		 		}
+		 	});
+		</script>
+
+		
+
+		<script type="text/javascript">
+		//左边菜单栏的选中效果
+				var con_name = "{$Think.const.CONTROLLER_NAME}";
+		     	var act_name = "{$Think.const.ACTION_NAME}";
+		     	var act_name = act_name.toLowerCase();
+		     	var con_name = con_name.toLowerCase();
+		     	var sid = "{$Think.get.sid}";
+
+				$(document).ready(function() {
+			     	
+					if( con_name == 'index' && act_name =='index'){ // 首页
+						
+						$('#con_index').attr('class','active');
+
+					}else if( con_name == 'census' && act_name =='index' ){ //学校汇总
+						
+						count_active( '.index' )
+
+					}else if( con_name == 'census' ){ // 大连工业大学 等
+						count_active(".count_"+sid);
+
+					}else if( con_name == 'school'){  // 学校列表
+						schoolset_active('.school');
+						
+					}
+			    });
+
+			    function schoolset_active( name ){  //学校设置菜单下的 .census_school
+			    	$('.census_school').attr('class','active ').find(name).attr('class','active');
+					$('.school_set').show();
+					
+			    }
+
+			    function count_active( name ){  //学校数据信息统计 .school_count
+			    	$('.census').attr('class','active ').find(name).attr('class','active');
+					$('.school_count').show();
+					
+			    }
+
+
+			    /*function active( name ){
+			    	$('.school_set').show();
+			    	$('.'+name).attr('class','active ').find("."+act_name).attr('class','active');
+					
+			    }*/
+				
+		</script>
+
+</body>
+</html>
+
+
+

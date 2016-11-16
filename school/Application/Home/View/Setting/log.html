@@ -1,0 +1,100 @@
+<extend name="Common:base_no_left" />
+<block name="rig">
+s
+<link rel="stylesheet" href="/school/Public/Admin/css/shezhi.css" />
+<a href="./?refresh"><img src="/school/Public/Admin/img/avatars/gw-logo.png" class="shizhi_logo"></a>	
+		<div class="">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-list"></i>
+								设置管理
+							</li>
+							<li class="active">我的账户</li>
+						</ul><!-- .breadcrumb -->	
+					</div>
+
+
+
+					<!-- 表单 -->
+					<div class="row widget-main well shizhi_box shizhi_wai">
+							<ul class="nav nav-pills shezhi_nav">
+								<li class="active" >
+									<a href="{:U('log')}">系统日志</a>
+								</li>
+								
+							</ul>						
+							<div class="panel panel-info">
+								<div class="panel-heading">锁屏设置</div>
+								<div class="space"></div>
+
+								<form class="form-horizontal" method="get" action="">
+									<input type="hidden" name="s" value="/Home/Setting/log.html">
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-3 col-md-2 col-lg-1 control-label" for="form-field-1"> 
+										日期范围</label>
+										<div class="col-sm-6 col-lg-8 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="icon-calendar bigger-110"></i>
+												</span>
+												<input class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" value="{$Think.get.date-range-picker}">
+											</div>
+															
+										</div>
+										<div class="col-sm-2">
+											<button class="btn btn-tijiao" style="border:none;">搜索</button>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="rule panel panel-default">
+							<table class="table table-hover user_list_table">
+								<thead class="navbar-inner">
+									<tr>
+										<th>id</th>
+										<th>操作员</th>
+										<th>操作类型</th>
+										<th>操作备注</th>
+										<th>操作时间</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<volist name='list' id="log">
+									<tr>
+										<td>{$log.id}</td>
+										<td>{$log.admin}</td>
+										<td>{$log.operate}</td>
+										<td>{$log.mark}</td>
+										<td>{$log.addtime|date='Y-m-d H:m:s',###}</td>
+									</tr>
+									</volist>
+								</tbody>
+							</table>
+
+							<div class="dataTables_paginate paging_bootstrap">
+								{$page}
+							</div>
+							</div>
+					</div>
+
+					<!-- 表单end -->								
+
+		</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+		$('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function(){
+			$(this).next().focus();
+		});
+	});
+
+
+</script>
+
+</block>

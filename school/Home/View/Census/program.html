@@ -1,0 +1,141 @@
+<extend name="Common:base" />
+<block name="rig">
+<style>
+	.navbar-inner tr{
+		background:#fff !important;
+	}
+	.header-color-blue2 + .widget-body{
+		border-color:#ccc;
+	}
+	.zdy-widget-body-table{
+		border-top:none !important;
+	}
+	.zdy-menu a{
+		margin-bottom:10px;
+	}
+</style>
+		<div class="col-xs-12 col-sm-9 col-lg-10" >
+					
+					<include file="menu"/>
+					<br>
+					<!-- 表格 -->
+					<div class="row">
+					<div class="col-xs-12" style="margin-top:10px;">
+						
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="widget-box">
+									<div class="widget-header header-color-blue2">
+										<h4 class="lighter smaller">条件筛选</h4>
+									</div>
+									<form method="get" action="">
+									<input type="hidden" value="Home" name='m' >
+									<input type="hidden" value="{$Think.const.CONTROLLER_NAME}" name='c' >
+									<input type="hidden" value="{$Think.const.ACTION_NAME}" name='a' >
+									<div class="widget-body" style="padding:20px;">
+										<div class="widget-main padding-8" >
+
+											<div class="row">
+												<div class="col-xs-2 col-sm-1" align="right">
+													<label for="id-date-range-picker-1" style="margin-top:5px;">时间：</label>
+												</div>
+												<div class="col-xs-4 col-sm-4">
+													
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="icon-calendar bigger-110"></i>
+														</span>
+														<input placeholder="点击选择时间" class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" value="{$Think.get.date-range-picker}">
+													</div>
+												</div>
+
+												<div class="col-xs-4 col-sm-4">
+													<button class="btn btn-sm btn-info" type="submit">
+														查询
+													</button>
+
+												</div>
+											</div>
+										</div>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<br>
+
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="widget-box">
+									<div class="widget-header header-color-blue2">
+										<h4 class="lighter smaller">充值信息查询</h4>
+									</div>
+
+									<div class="widget-body" >
+										<div class="widget-main padding-8" >
+
+												<table id="sample-table-2" class="table table-hover zdy-widget-body-table">
+													<thead class="navbar-inner">
+														<tr>
+															<th>ID</th>
+															<th>活动名称</th>
+															<th>活动分类名称</th>
+															<th>参与人数</th>
+															<th>有效时间</th>
+															<th>折扣</th>
+															
+														</tr>
+													</thead>
+													<tbody>
+													<volist name="porgram" id="list">
+														<tr>
+															<td>{$list.id}</td>
+															<td>{$list.name}</td>
+															<td>{$list.cname}</td>
+															<td>{$list.renshu}</td>
+															<td>{$list.starttime|date='Y-m-d',###} ~ {$list.endtime|date='Y-m-d',###}</td>
+															<td style="color:red;">{$list.discount}折</td>
+															
+															
+														</tr>
+													</volist>
+													</tbody>
+												</table>
+												<!-- 分页 -->
+												<div class="dataTables_paginate paging_bootstrap">
+													{$page}
+												</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+							
+					</div>
+					</div>
+		</div>
+
+
+<script type="text/javascript">
+
+	
+	$(document).ready(function(){
+		$('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function(){
+			$(this).next().focus();
+		});
+
+		$(".timego").blur(function(){
+			$('#time_form').submit();
+		});
+	});
+
+	
+
+</script>
+</block>
+
+
+

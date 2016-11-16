@@ -1,0 +1,105 @@
+<extend name="Common:base_no_left" />
+<block name="rig">
+<link rel="stylesheet" href="/school/Public/Admin/css/shezhi.css" />		
+<img src="/school/Public/Admin/img/avatars/gw-logo.png" class="shizhi_logo">	
+		
+		
+		<div class="">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-list"></i>
+								设置管理
+							</li>
+							<li class="active">我的账户</li>
+						</ul><!-- .breadcrumb -->	
+					</div>
+
+
+
+					<!-- 表单 -->
+					<div class="widget-main well shizhi_box shizhi_wai">
+								<!-- PAGE CONTENT BEGINS -->
+					<ul class="nav nav-pills shezhi_nav">
+						<li class="active">
+							<a href="#">编辑用户{$info.username}</a>
+						</li>
+						
+					</ul>
+					<blockquote style="">
+						<p>编辑用户基本资料</p>
+					</blockquote>
+								<form class="form-horizontal" role="form" method="post">
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-3 col-md-2 control-label" for="form-field-1"> 
+										管理员账号：</label>
+
+										<div class="col-sm-9 col-xs-12">
+											<input type="text" id="form-field-1"  class="form-control" maxlength="16" name="username" value="{$info.username}" <php> if($info['username'] == $_SESSION['username'] ) echo 'disabled="" ' ;</php> > 
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-3 col-md-2 control-label" for="form-field-2"> 新密码： </label>
+
+										<div class="col-sm-9 col-xs-12">
+											<input type="password" id="form-field-2" name="new_pwd" class="form-control">
+										</div>
+									</div>
+									<hr>
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-3 col-md-2 control-label" for="form-field-3"> 邮箱地址： </label>
+
+										<div class="col-sm-9 col-xs-12">
+											<input type="text" id="form-field-3" name="emali" class="form-control" value="{$info.emali}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-3 col-md-2 control-label" for="form-field-4"> 真实姓名： </label>
+
+										<div class="col-sm-9 col-xs-12">
+											<input type="text" id="form-field-4" name="truename" class="form-control" value="{$info.truename}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-3 col-md-2 control-label" for="form-field-5"> 备注： </label>
+
+										<div class="col-sm-9 col-xs-12">
+											<input type="text" id="form-field-5" name="mark" class="form-control" value="{$info.mark}">
+										</div>
+									</div>
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-1 col-md-9">
+											<button class="btn btn-tijiao" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												提交
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn btn-tijiao" type="reset" onclick="history.go(-1)">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+									
+								</form>
+							</div>
+
+					<!-- 表单end -->								
+
+					
+		</div>
+
+
+</block>

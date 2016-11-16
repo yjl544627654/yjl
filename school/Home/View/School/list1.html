@@ -1,0 +1,208 @@
+<extend name="Common:base" />
+<block name="rig">
+<link rel="stylesheet" href="/school/Public/Admin/css/Aimara.css" />
+<script src="/school/Public/Admin/js/Aimara.js"></script>
+<style>
+	.shezhi_nav{
+		margin:0px;
+		border-bottom:1px solid #428bca;
+	}
+	.zdy-widget-body-table{
+		border-top:none !important;
+	}
+	.zdy-widget-box{
+		border:1px solid #ccc;
+		border-radius:4px;
+	}
+	#div_tree{
+		font-size:16px;
+	}
+	#div_tree a{
+		color:#393939;
+	}
+	.tree::before{
+		border:none;
+	}
+	ul.tree li{
+		line-height:30px;
+		border-left:1px dashed #ccc ;
+	}
+	img.exp_col{
+		margin-top:8px;
+	}
+</style>
+
+<script type="text/javascript">
+	window.onload = function() {
+
+		//Initializing Tree
+
+		//Tree Context Menu Structure
+		var contex_menu = {
+			'context1' : {
+				elements : [
+					{
+						text : '选择',
+						icon: 'Public/Admin/img/blue_key.png',
+						action : function(node) {
+
+						},
+						submenu: {
+							elements : [
+								{
+									text : '增加',
+									icon: 'Public/Admin/img/add1.png',
+									action : function(node) {
+										node.zdycreateChildNode('新增加',false,'Public/Admin/img/star.png',null,'context1');
+									}
+								},							
+								{
+									text : '删除',
+									icon: 'Public/Admin/img/delete.png',
+									action : function(node) {
+										//node.removeNode();
+										alert(node.tap);
+									}
+								},
+								{
+									text : '编辑',
+									icon: 'Public/Admin/img/collapse.png',
+									action : function(node) {
+										node.setText();
+									}
+								},
+							]
+						}
+					}
+				]
+			}
+		};
+
+
+
+
+		//Creating the tree
+		tree = createTree('div_tree','with',contex_menu);
+		tree.zdycreateChildNode = function(node){
+			console.log(node)
+		}
+		// tree.nodeBeforeOpenEvent = function(node) {
+		// 	console.log(node)
+		// }
+		//Loop to create test nodes
+		// node1 = tree.createNode('学校列表',false,'Public/Admin/img/star.png',null,null,'context1');
+		// node2 = node1.createChildNode('学校名1',false,'Public/Admin/img/star.png',null,null,'context1');
+		// node2 = node1.createChildNode('学校名1',false,'Public/Admin/img/star.png',null,null,'context1');
+
+
+		for (var i=1; i<10; i++) {
+			node2 = tree.createNode('学校名1' + i,false,'Public/Admin/img/star.png',null,null,'context1');
+			for (var j=1; j<5; j++) {
+				node3 = node2.createChildNode('分类1' + j, false, 'Public/Admin/img/star.png',"{aa,''asd}",'context1');
+				for (var k=1; k<5; k++) {
+					node4 = node3.createChildNode('分类2' + k, false, 'Public/Admin/img/star.png',null,'context1');
+					for (var l=1; l<5; l++) {
+						node5 = node4.createChildNode('分类2' + l, false, 'Public/Admin/img/star.png',null,'context1');
+					}
+				}
+			}
+		}
+
+		//Rendering the tree
+		tree.drawTree();
+
+
+
+
+	};
+
+
+</script>
+		<div class="col-xs-12 col-sm-9 col-lg-10">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								学校列表
+							</li>
+						</ul><!-- .breadcrumb -->	
+					</div>
+
+
+					<ul class="nav nav-pills shezhi_nav">
+						<li class="active">
+							<a href="{:U('school/school_list')}">学校列表</a>
+						</li>
+						<li>
+							<a href="{:U('school/school_add')}">添加学校</a>
+						</li>
+					</ul>
+				
+					<!-- 表格 -->
+					<div class="row">
+					<div class="col-xs-12" style="margin-top:10px;">
+
+						<div class="widget-box zdy-widget-box">
+							<div class="widget-body">
+								<div class="widget-main padding-8">
+									<table id="sample-table-2" class="table table-hover zdy-widget-body-table">
+										<thead class="navbar-inner">
+											<tr>
+												<th>id</th>
+												<th>学校名称</th>
+												<th>学校id</th>
+												<th>接口地址</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<volist name='list' id="school">
+											<tr>
+ 												<td>{$school.id}</td>
+												<td>{$school.name}</td>
+												<td>{$school.school_id}</td>
+												<td>{:urldecode($school['sdk_adder'])}</td>
+												<td> 
+													<a href="{:U('school/school_edit',array('id'=>$school['id']))}">编辑</a> 
+													<a href="{:U('school/school_del',array('id'=>$school['id']))}" onclick=" return confirm('确定删除吗？')">删除</a> 
+												</td>
+											</tr>
+											</volist>
+										</tbody>
+									</table>
+									<!-- 分页 -->
+								
+									</div>	
+							</div>
+						</div>	
+						<div id="div_tree"></div>			
+					</div>
+					</div>
+				</div>
+
+
+
+		
+
+
+
+		</div>
+<script type="text/javascript">
+$(document).ready(function(){
+		$('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function(){
+			$(this).next().focus();
+		});
+
+});
+
+
+</script>
+
+</block>
+
+
+

@@ -1,0 +1,66 @@
+<extend name="Common:base_no_left" />
+<block name="rig">
+<link rel="stylesheet" href="__CSS__shezhi.css" />
+<img src="__IMG__avatars/gw-logo.png" class="shizhi_logo">
+		<div class="">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-list"></i>
+								设置管理
+							</li>
+							<!-- <li class="active">大连工业大学</li> -->
+							
+						</ul><!-- .breadcrumb -->	
+					</div>
+ 	<!--				<div class="page-content" style="padding-bottom:0px;">
+						<div class="page-header">
+							<h1>
+								设置管理
+							</h1>
+						</div> /.page-header 
+					</div> -->
+					<div class="widget-main shizhi_box"> 
+						<div class="shizhi_wai">
+							<blockquote style="">
+								<p>用户管理</p>
+							</blockquote>
+
+							<a href="{:U('account')}" class="btn btn-app">
+								<i class="icon-briefcase"></i>
+								我的账户
+							</a>
+							<a href="{:U('user_list')}" class="btn btn-app">
+								<i class="icon-group"></i>
+								用户管理
+							</a>
+						</div>
+						<div class="shizhi_wai">
+							<blockquote>
+								<p>系统管理</p>
+							</blockquote>
+
+							<a href="{:U('database/database_copy')}" class="btn btn-app" style="">
+								<i class="icon-hdd"></i>
+								数据库
+							</a>
+							<a href="{:U('setting')}" class="btn btn-app" style="">
+								<i class="icon-cog"></i>
+								其他设置
+							</a>
+							<a href="{:U('log')}" class="btn btn-app" style="">
+								<i class="icon-book"></i>
+								查看日志
+							</a>
+						</div>
+					</div>
+						
+					
+		</div>
+
+
+</block>

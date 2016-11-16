@@ -1,0 +1,131 @@
+<extend name="Common:base_no_left" />
+<block name="rig">
+
+<link rel="stylesheet" href="__CSS__shezhi.css" />
+<img src="__IMG__avatars/gw-logo.png" class="shizhi_logo">		
+		<div class="">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-list"></i>
+								设置管理
+							</li>
+							<li class="active">我的账户</li>
+						</ul><!-- .breadcrumb -->	
+					</div>
+
+
+
+					<!-- 表单 -->
+					<div class="widget-main well shizhi_box shizhi_wai">
+						<ul class="nav nav-pills shezhi_nav" >
+							<li >
+								<a href="{:U('user_list')}">用户列表</a>
+							</li>
+							<li class="active"  >
+								<a href="{:U('add_user')}">添加用户</a>
+							</li>
+							<li  >
+								<a href="{:U('user_group')}">用户组</a>
+							</li>
+						</ul>
+								<!-- PAGE CONTENT BEGINS -->
+						<blockquote style="">
+								<p>用户管理</p>
+						</blockquote>
+								<form class="form-horizontal" role="form" method="post">
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="form-field-1"> 
+										用户名</label>
+
+										<div class="col-sm-10 col-lg-9 col-xs-12">
+											<input type="text" id="form-field-1"  class="form-control" maxlength="16" name="username">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">请输入用户名，用户名为6-16个字符组成,包括汉字，大小写字母（区分大小写）</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="form-field-2"> 密码 </label>
+
+										<div class="col-sm-10 col-lg-9 col-xs-12">
+											<input type="password" id="form-field-2" name="pwd"  class="form-control">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">请填写密码，最小长度为6个字符</span>
+											</span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" 
+										for="form-field-2"> 确认密码 </label>
+
+										<div class="col-sm-10 col-lg-9 col-xs-12">
+											<input type="password" id="form-field-2" name="reg_pwd" class="form-control">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">请重复输入密码，确认输入正确</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="form-field-2"> 所属用户组 </label>
+
+										<div class="col-sm-10 col-lg-9 col-xs-12">
+											<select class="form-control" id="form-field-select-1" name="uid" >
+												<volist name="grouplist" id='list'>
+												<option value="{$list.id}">{$list.groupname}</option>
+												</volist>
+											</select>
+											
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">所属用户组</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="form-field-2"> 备注 </label>
+
+										<div class="col-sm-10 col-lg-9 col-xs-12">
+											<textarea name="make" id="form-field-11" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 52px;"></textarea>
+											
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-1 col-md-9">
+											<button class="btn btn-tijiao" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												提交
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn btn-tijiao" type="reset" onclick="history.go(-1)">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+									
+								</form>
+							</div>
+
+					<!-- 表单end -->								
+
+					
+		</div>
+
+
+</block>

@@ -1,0 +1,143 @@
+<extend name="Common:base" />
+<block name="rig">
+<style>
+	.navbar-inner tr{
+		background:#fff !important;
+	}
+	.header-color-blue2 + .widget-body{
+		border-color:#ccc;
+	}
+	.zdy-widget-body-table{
+		border-top:none !important;
+	}
+	.zdy-menu a{
+		margin-bottom:10px;
+	}
+</style>
+		<div class="col-xs-12 col-sm-9 col-lg-10">
+					
+					<include file="menu"/>
+
+					<!-- 表格 -->
+					<div class="row">
+					<div class="col-xs-12" style="margin-top:10px;">
+
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="widget-box">
+									<div class="widget-header header-color-blue2">
+										<h4 class="lighter smaller">条件筛选</h4>
+									</div>
+									<form method="get" action="">
+									<input type="hidden" value="Home" name='m' >
+									<input type="hidden" value="{$Think.const.CONTROLLER_NAME}" name='c' >
+									<input type="hidden" value="{$Think.const.ACTION_NAME}" name='a' >
+									<div class="widget-body" style="padding:20px;">
+										<div class="widget-main padding-8" >
+
+											<div class="row">
+												<div class="col-xs-2 col-sm-1" align="right">
+													<label for="id-date-range-picker-1" style="margin-top:5px;">时间：</label>
+												</div>
+												<div class="col-xs-4 col-sm-4">
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="icon-calendar bigger-110"></i>
+														</span>
+														<input placeholder="点击选择时间" class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" value="{$Think.get.date-range-picker}">
+													</div>
+												</div>
+
+												<div class="col-xs-4 col-sm-3">
+													<input class="form-control" type="text" name="repname" value="{$Think.get.repname}" placeholder="请输入考勤人">
+													
+												</div>
+												<div class=" col-xs-2 col-sm-2 ">
+													<button class="btn btn-sm btn-info" type="submit">
+														查询
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+							
+						<br>
+					
+							<!-- 消费统计 -->
+							<div class="row">
+							<div class="col-sm-12">
+								<div class="widget-box">
+									<div class="widget-header header-color-blue2">
+										<h4 class="lighter smaller">维护情况 
+											<span style="color:red">共维护 {$count} 次</span></h4>
+									</div>
+
+									<div class="widget-body" >
+										<div class="widget-main padding-8" >
+
+												<table id="sample-table-2" class="table table-hover zdy-widget-body-table">
+													<thead class="navbar-inner">
+														<tr>
+															<th>维修人姓名</th>
+															<th>中控设备号</th>
+															<th>水机号</th>
+															<th>位置</th>
+															<th>备注</th>
+															<th>登记时间</th>
+														</tr>
+													</thead>
+													<tbody>
+													<volist name='oper' id='list'>
+														<tr>
+															<td>{$list.repname}</td>
+															<td>{$list.ccuidv}</td>
+															<td >{$list.wtdidv}</td>
+															<td>{$list.addrname}</td>
+															<td>{$list.remarks}</td>
+															<td>{$list.time|date='Y-m-d',###}</td>
+														</tr>
+													</volist>
+													</tbody>
+												</table>
+												<!-- 分页 -->
+												
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+						</div>
+		</div>
+
+
+<script type="text/javascript">
+
+	
+	$(document).ready(function(){
+		$('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function(){
+			$(this).next().focus();
+		});
+
+		$(".timego").blur(function(){
+			$('#form1').submit();
+		});
+
+		$("#form-field-select-1").change(function(){
+			$("#form1").submit();
+		})
+
+		$("[value='{$repair_man}']").attr('selected','selected');
+	});
+
+	
+
+</script>
+</block>
+
+

@@ -1,0 +1,103 @@
+<extend name="Common:base" />
+<block name="rig">
+<style>
+	.navbar-inner tr{
+		background:#fff !important;
+	}
+	.header-color-blue2 + .widget-body{
+		border-color:#ccc;
+	}
+	.zdy-widget-body-table{
+		border-top:none !important;
+	}
+	.zdy-menu a{
+		margin-bottom:10px;
+	}
+</style>
+		<div class="col-xs-12 col-sm-9 col-lg-10">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								学校数据信息统计
+							</li>
+							<li class="active">学校信息汇总</li>
+						</ul><!-- .breadcrumb -->
+
+					</div>
+
+
+						<div class="">
+
+
+							<div class="panel panel-info">
+							<div class="panel-heading">学校数据总汇总</div>
+							<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="panel-body table-responsive">
+											<table id="sample-table-1 " class="table table-hover">
+												<tbody>
+													<tr>
+														<th> 学校名 </th>
+														<th> 消费金额 </th>
+														<th> 消费次数 </th>
+														<th> 充值次数 </th>
+														<th> 充值金额 </th>
+														<th> 机器故障次数 </th>
+														<th> 机器维护次数 </th>
+														<th> 操作 </th>
+													</tr>
+													<volist name='list' id='school'>
+													<tr>
+														<td>{$school.schoolname}</td>
+														<td>{$school['xf']['CONMON1']+$school['xf']['CONMON2']+$school['xf']['CONMON3']} </td>
+														<td>{$school['xf']['CONNUM1']+$school['xf']['CONNUM2']+$school['xf']['CONNUM3']} </td>
+														<td>{$school['cz']['CONNUM']}</td>
+														<td>{$school['cz']['CONMON']}</td>
+														<td>{$school.jxgz}</td>
+														<td>{$school.jxwh}</td>
+														<td><a href="{$school.admin_adder}" target="_blank">进入后台</a></td>
+													</tr>
+													</volist>
+													<tr>
+														<td> 总数 </td>
+														<td>{$count.xf_money}</td>
+														<td>{$count.xf_num}</td>
+														<td>{$count.cz_num}</td>
+														<td>{$count.cz_money}</td>
+														<td>{$count.jxgz}</td>
+														<td>{$count.jxwh}</td>
+														<td> </td>
+													</tr>
+													<!-- 
+													<tr>
+														<td>消费金额：{$xf.money} 元</td> 
+														<td class="hidden-480">消费次数：{$xf.num} 次</td>
+													</tr>
+													<tr>
+														<td>充值金额：{$cz.money} 元</td> 
+														<td class="hidden-480">充值次数：{$cz.num} 次</td>
+													</tr>
+													<tr>
+														<td>机器故障次数：{$jxgz} 次</td> 
+														<td class="hidden-480">机器维护次数：{$jxwh} 次</td>
+													</tr> -->
+												</tbody>
+											</table>
+									</div>
+								</div>
+							</div><!-- /.table-responsive -->
+							</div>
+						</div><!-- /span -->
+					</div><!-- /row -->
+		</div><!-- /.main-container -->
+
+</block>
+

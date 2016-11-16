@@ -1,0 +1,158 @@
+<extend name="Common:base" />
+<block name="rig">	
+<style>
+	.navbar-inner tr{
+		background:#fff !important;
+	}
+	.header-color-blue2 + .widget-body{
+		border-color:#ccc;
+	}
+	.zdy-widget-body-table{
+		border-top:none !important;
+	}
+	.zdy-menu a{
+		margin-bottom:10px;
+	}
+</style>
+		<div class="col-xs-12 col-sm-9 col-lg-10">
+					
+					<include file="menu"/>
+
+					<!-- 表格 -->
+					<div class="row">
+					<div class="col-xs-12" style="margin-top:10px;">
+
+						
+							<!-- 统计 -->
+
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="widget-box">
+									<div class="widget-header header-color-blue2">
+										<h4 class="lighter smaller">条件筛选</h4>
+									</div>
+									<form method="get" action="?">
+									<input type="hidden" value="Home" name='m' >
+									<input type="hidden" value="{$Think.const.CONTROLLER_NAME}" name='c' >
+									<input type="hidden" value="{$Think.const.ACTION_NAME}" name='a' >
+									<div class="widget-body" style="padding:20px;">
+										<div class="widget-main padding-8" >
+
+											<div class="row">
+												<div class="col-xs-2 col-sm-1" align="right">
+													<label for="id-date-range-picker-1" style="margin-top:5px;">时间：</label>
+												</div>
+												<div class="col-xs-4 col-sm-4">
+													
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="icon-calendar bigger-110"></i>
+														</span>
+														<input placeholder="点击选择时间" class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" value="{$Think.get.date-range-picker}">
+													</div>
+												</div>
+
+												<div class="col-xs-4 col-sm-4">
+													<button class="btn btn-sm btn-info" type="submit">
+														查询
+													</button>
+
+													<!-- <button class="btn btn-sm btn-success" type="submit">
+														导出列表
+													</button> -->
+												</div>
+											</div>
+										</div>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+
+						<br>
+							<br>
+							<div class="table-responsive">
+								<div id="container" style="height: 600px"></div>
+							</div>
+					</div>
+					</div>
+		</div>
+
+
+
+	
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+app.title = '热冷水消费情况图';
+
+option = {
+    color: ['#3398DB'],
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['热水', '温水', '冷水','开水','洗澡','洗衣机','电吹风'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'金额',
+            type:'bar',
+            barWidth: '60%',
+            data:['{$icon.hotwater}', '{$icon.warmwater}', '{$icon.coldwater}', '{$icon.kaishui}', '{$icon.xizaoshui}', '{$icon.xiyiji}', '{$icon.chuifengji}']
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+</script>
+
+<script type="text/javascript">
+/*$(document).ready(function(){
+	$(".timego").click(function(){
+		alert('查询操作');
+	});
+})*/
+	
+$(document).ready(function(){
+		$('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function(){
+			$(this).next().focus();
+		});
+
+});
+</script>
+</block>
+
+
+
